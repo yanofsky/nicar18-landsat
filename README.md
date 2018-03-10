@@ -22,7 +22,7 @@ Navigate to the session folder and run this command
 
 [Earth Explorer](https://earthexplorer.usgs.gov/)
 [Landsat Util](https://pythonhosted.org/landsat-util/)
-[libra.developmentseed.org](libra.developmentseed.org)
+[libra.developmentseed.org](https://libra.developmentseed.org)
 
 ## Point and click with photoshop
 
