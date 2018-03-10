@@ -20,9 +20,9 @@ Navigate to the session folder and run this command
 
 ## Where does this data come from
 
-[Earth Explorer](https://earthexplorer.usgs.gov/)
-[Landsat Util](https://pythonhosted.org/landsat-util/)
-[libra.developmentseed.org](https://libra.developmentseed.org)
+- [Earth Explorer](https://earthexplorer.usgs.gov/)
+- [Landsat Util](https://pythonhosted.org/landsat-util/)
+- [libra.developmentseed.org](https://libra.developmentseed.org)
 
 ## Point and click with photoshop
 
