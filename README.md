@@ -12,9 +12,9 @@ Request access to Google Earth Engine code environment
 
 https://signup.earthengine.google.com/#!/
 
-Download this file and put it in the LC80230312014138LGN00 folder
+Whoops, you need to download this file and put it in the LC80230312014138LGN00 folder.
 
-you can also use landsat util and run this command from the workshop folder
+Navigate to the session folder and run this command
 
 `landsat download LC80230312014138LGN00 --bands BQA -d ./`
 
@@ -42,7 +42,7 @@ you can also use landsat util and run this command from the workshop folder
 
 	Click OK
 
-6. Your image is really dark. Lighten it up by going to Image > Adjustments > Levels
+6. Your image is really dark. Lighten it up by going to `Image > Adjustments > Levels`
 	take the white carrot and drag it to the edge of the histogram, click okay
 
 7. Open the layers panel, create a new Curves adjustment layer by clicking the half-filled circle button at the bottom of the panel.
@@ -179,6 +179,6 @@ These are some stories that have used Landsat imagery.
 * [The island Bangladesh is thinking of putting refugees on is hardly an island at all](https://qz.com/1075444/the-island-bangladesh-is-thinking-of-putting-refugees-is-hardly-an-island-at-all/) by Quartz
 * A thing Eric published today I and dont have a link for!
 * [Who is the Wet Prince of Bel Air? Here are the likely culprits](https://www.revealnews.org/article/who-is-the-wet-prince-of-bel-air-here-are-the-likely-culprits/) by Reveal
-* [Propublica stuff](https://projects.propublica.org/las-vegas-growth-map/)
+* [Welcome to Fabulous Las Vegas: While supplies last](https://projects.propublica.org/las-vegas-growth-map/) by Propublica
 * [A Rogue State Along Two Rivers](https://www.nytimes.com/interactive/2014/07/03/world/middleeast/syria-iraq-isis-rogue-state-along-two-rivers.html) by The New York Times
 
