@@ -180,7 +180,7 @@ Export.image.toDrive({
 
 12. Click the "Run" button to exicute your code. In the "Tasks" panel clikc "Run" on the item created to begin the image export process.
 
-Exporting images from Earth Engine can be slow. To speed it up, try drawing a shape on the map viewer and using it to crop with. Then updated the export section to look a like this
+Exporting images from Earth Engine can be slow. To speed it up, try drawing a shape on the map viewer and using it to crop with. Then update the export section to look a like this.
 
 ```
 var export_image = scene.visualize(params)
