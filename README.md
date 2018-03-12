@@ -12,6 +12,12 @@ Request access to Google Earth Engine code environment
 
 https://signup.earthengine.google.com/#!/
 
+The machines we used already had the following required software installed:
+* [Landsat Util](https://pythonhosted.org/landsat-util/installation.html)
+* [Adobe Photoshop](https://www.adobe.com/products/photoshop/free-trial-download.html)
+
+The Photoshop process can be achived in GIMP as well, but the method is very different
+
 ## Where does this data come from
 
 We didn't do this in the session but these tools provide various ways to download Landsat scenes. I think Libra is the easiest to use.
@@ -51,6 +57,8 @@ If you're doing this at home, you'll have a few more files in your directory tha
 
 10. Switch back to the RGB view in the histogram and pull the middle of the white line up
 
+Using this method will remove all of the geographic metadata from your image. [Here is a way to get it back](https://gis.stackexchange.com/a/108703) using the command line tool GDAL.
+
 ## On the command line with landsat-util
 
 1. Open up the command line and navigate to the folder with your images
@@ -76,8 +84,7 @@ var o = {
   finish: ee.Date('2018-03-10'),
   target: geometry,
   cloud_cover_lt: 0.8,
-  bands:["B4", "B3", "B2"],
-  projection: "EPSG:3394"
+  bands:["B4", "B3", "B2"]
 }
 ```
 
@@ -112,18 +119,21 @@ var scene = ee.Image(filteredCollection.sort("DATE_ACQUIRED", false).first());
 
 9. Set your parameters based on the data
 
+You can do it this way by manually defining the extent of your data
+
 ```
-
-# Either
-
 var params = {
   bands: o.bands,
   max: [10000,10000,10000],
   min: [1000,1000,1000]
 }
 
-# or more complexly
+```
 
+
+More complexly you can try to do it automatically by programatically calculating the extent of your data
+
+```
 var bandMax = filteredCollection.median()
     .reduceRegion({
       geometry: o.target,
@@ -147,7 +157,6 @@ var params = {
   min: o.bands.map(function(b){return bandMin.get(b).getInfo() * 0.15})
 }
 
-####
 ```
 
 10. Plot your scene in the environment
@@ -159,11 +168,13 @@ Map.addLayer(scene, params)
 11. Save to your google drive as a jpeg
 
 ```
+var export_image = scene.visualize(params)
+
 Export.image.toDrive({
-  image: scene.visualize(params).reproject(o.projection),
-  description: "my_scene_from_nicar",
-  scale: 30,
-  maxPixels: 240000000000
+    image: export_image,
+    description: "my_scene_from_nicar",
+    scale: 30,
+    maxPixels: 240000000000
 })
 ```
 
@@ -172,8 +183,10 @@ Export.image.toDrive({
 Exporting images from Earth Engine can be slow. To speed it up, try drawing a shape on the map viewer and using it to crop with. Then updated the export section to look a like this
 
 ```
+var export_image = scene.visualize(params)
+
 Export.image.toDrive({
-    image: export_image.reproject(o.projection),
+    image: export_image,
     description: "my_scene_from_nicar",
     scale: 30,
     region: geometry, #make sure this matches the name of whatever shape you drew 
