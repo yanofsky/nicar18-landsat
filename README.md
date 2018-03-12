@@ -12,22 +12,20 @@ Request access to Google Earth Engine code environment
 
 https://signup.earthengine.google.com/#!/
 
-Whoops, you need to download this file and put it in the LC80230312014138LGN00 folder.
-
-Navigate to the session folder and run this command
-
-`landsat download LC80230312014138LGN00 --bands BQA -d ./`
-
 ## Where does this data come from
 
-[Earth Explorer](https://earthexplorer.usgs.gov/)
-[Landsat Util](https://pythonhosted.org/landsat-util/)
-[libra.developmentseed.org](https://libra.developmentseed.org)
+We didn't do this in the session but these tools provide various ways to download Landsat scenes. I think Libra is the easiest to use.
+
+* [Libra from Development Seed](https://libra.developmentseed.org)
+* [Landsat Util](https://pythonhosted.org/landsat-util/)
+* [Earth Explorer](https://earthexplorer.usgs.gov/)
+
+If you're doing this at home, you'll have a few more files in your directory than we used during the session.
 
 ## Point and click with photoshop
 
 1. Open the three images in photoshop
-	You want the X_B2.tif X_B3.tif and X_B4.tif files 
+	* You want the X_B2.tif X_B3.tif and X_B4.tif files 
 
 2. Open the channels panel
 
@@ -59,11 +57,10 @@ Navigate to the session folder and run this command
 
 2. run `landsat process LC80230312014138LGN00 --pansharpen --bands 432`
 
-3. your file is now at TK
+3. the output tells you where your file is located typically in your home directory inside of a folder at `landsat/processed/{landsat ID}`
 
 
 ## Using Google Earth Engine
-
 
 1. Navigate to https://code.earthengine.google.com/
 
@@ -122,10 +119,8 @@ var scene = ee.Image(filteredCollection.sort("DATE_ACQUIRED", false).first());
 var params = {
   bands: o.bands,
   max: [10000,10000,10000],
-  min: [1000,1000,1000])
+  min: [1000,1000,1000]
 }
-
-#####
 
 # or more complexly
 
@@ -165,19 +160,33 @@ Map.addLayer(scene, params)
 
 ```
 Export.image.toDrive({
-    image: scene.select(o.bands).reproject(o.projection),
+  image: scene.visualize(params).reproject(o.projection),
+  description: "my_scene_from_nicar",
+  scale: 30,
+  maxPixels: 240000000000
+})
+```
+
+12. Click the "Run" button to exicute your code. In the "Tasks" panel clikc "Run" on the item created to begin the image export process.
+
+Exporting images from Earth Engine can be slow. To speed it up, try drawing a shape on the map viewer and using it to crop with. Then updated the export section to look a like this
+
+```
+Export.image.toDrive({
+    image: export_image.reproject(o.projection),
     description: "my_scene_from_nicar",
     scale: 30,
-  })
+    region: geometry, #make sure this matches the name of whatever shape you drew 
+    maxPixels: 240000000000
+})
 ```
 
 
 ## Now what?
 
-These are some stories that have used Landsat imagery. 
+These are some stories that have used Landsat imagery to various ends. Some simply make use of true-color images like we made here. Some combine bands that capture reflections that are invisible to humans to detect vegitation health or highlight land use.
 
 * [The island Bangladesh is thinking of putting refugees on is hardly an island at all](https://qz.com/1075444/the-island-bangladesh-is-thinking-of-putting-refugees-is-hardly-an-island-at-all/) by Quartz
-* A thing Eric published today I and dont have a link for!
 * [Who is the Wet Prince of Bel Air? Here are the likely culprits](https://www.revealnews.org/article/who-is-the-wet-prince-of-bel-air-here-are-the-likely-culprits/) by Reveal
 * [Welcome to Fabulous Las Vegas: While supplies last](https://projects.propublica.org/las-vegas-growth-map/) by Propublica
 * [A Rogue State Along Two Rivers](https://www.nytimes.com/interactive/2014/07/03/world/middleeast/syria-iraq-isis-rogue-state-along-two-rivers.html) by The New York Times
