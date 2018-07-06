@@ -197,7 +197,7 @@ Export.image.toDrive({
 
 ## Now what?
 
-These are some stories that have used Landsat imagery to various ends. Some simply make use of true-color images like we made here. Some combine bands that capture reflections that are invisible to humans to detect vegitation health or highlight land use.
+These are some stories that have used Landsat imagery to various ends. Some simply make use of true-color images like we made here. Some combine bands that capture reflections that are invisible to humans to detect vegetation health or highlight land use.
 
 * [The island Bangladesh is thinking of putting refugees on is hardly an island at all](https://qz.com/1075444/the-island-bangladesh-is-thinking-of-putting-refugees-is-hardly-an-island-at-all/) by Quartz
 * [Who is the Wet Prince of Bel Air? Here are the likely culprits](https://www.revealnews.org/article/who-is-the-wet-prince-of-bel-air-here-are-the-likely-culprits/) by Reveal
