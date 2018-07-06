@@ -41,8 +41,8 @@ If you're doing this at home, you'll have a few more files in your directory tha
 
 5. Specify your channels 
 	* Red: X_B4.tif
-	* Blue: X_B3.tif
-	* Green: X_B2.tif
+	* Green: X_B3.tif
+	* Blue: X_B2.tif
 
 	Click OK
 
